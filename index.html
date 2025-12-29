@@ -1,11 +1,111 @@
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Bolingbrook Eats</title>
+    <meta name="description" content="Local places to eat in Bolingbrook — menus, hours, and contact info." />
+
+    <!-- Small internal CSS for a tidy starting layout -->
+    <style>
+      :root { --accent: #2b8cff; --bg:#f6f8fb; --card:#fff; --text:#111; }
+      * { box-sizing: border-box; }
+      body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:var(--bg); color:var(--text); line-height:1.4; }
+      a { color:var(--accent); text-decoration:none; }
+      header { background:var(--card); padding:1rem; box-shadow:0 1px 3px rgba(0,0,0,.06); display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+      nav a { margin-left:.6rem; }
+      main { max-width:900px; margin:1.25rem auto; padding:0 1rem; }
+      .hero { background:var(--card); padding:1.25rem; border-radius:8px; margin-bottom:1rem; }
+      .row { display:flex; gap:1rem; }
+      .col { flex:1; background:var(--card); padding:1rem; border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,.04); }
+      h1,h2 { margin:.25rem 0; }
+      ul { padding-left:1.25rem; }
+      footer { max-width:900px; margin:1rem auto; padding:1rem; text-align:center; color:#666; }
+      .btn { background:var(--accent); color:#fff; padding:.45rem .75rem; border-radius:6px; border:0; cursor:pointer; }
+      @media (max-width:640px) { .row { flex-direction:column; } nav { font-size:.95rem; } }
+      /* skip link for accessibility */
+      .skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+      .skip-link:focus { left:1rem; top:1rem; width:auto; height:auto; background:#fff; padding:.25rem .5rem; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+    </style>
+
+    <!-- Small inline script loaded after parsing (defer-like) -->
+    <script>
+      // Wait for DOMContentLoaded for simple interactivity
+      document.addEventListener('DOMContentLoaded', function () {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = contactForm.name.value.trim() || 'friend';
+            const area = document.getElementById('messageArea');
+            area.textContent = `Thanks, ${name}! (demo — no message sent)`;
+            contactForm.reset();
+          });
+        }
+      });
+    </script>
   </head>
+
   <body>
-    <h1>Bolingbrook Eats</h1>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <h1>Bolingbrook Eats</h1>
+      <nav aria-label="Main navigation">
+        <a href="#places">Places</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <h2 id="hero-title">Find the best local food in Bolingbrook</h2>
+        <p>Small guide to restaurants, hours, and contact info — click a place for details.</p>
+      </section>
+
+      <section id="places" class="row" aria-labelledby="places-title">
+        <div class="col" aria-labelledby="places-title">
+          <h2 id="places-title">Popular spots</h2>
+          <ul>
+            <li><strong>Pizzeria Bella</strong> — Pizza, pasta. <a href="#contact">Call</a></li>
+            <li><strong>Tasty Thai</strong> — Noodles, curries. <a href="#contact">Call</a></li>
+            <li><strong>Sunny Cafe</strong> — Breakfast & coffee. <a href="#contact">Call</a></li>
+          </ul>
+        </div>
+
+        <aside class="col" aria-labelledby="hours-title">
+          <h2 id="hours-title">Hours</h2>
+          <p>Most places open 11am–9pm. Always check the listing.</p>
+        </aside>
+      </section>
+
+      <section id="about" class="col" aria-labelledby="about-title" style="margin-top:1rem;">
+        <h2 id="about-title">About this site</h2>
+        <p>This is a small demo site — you can expand each place with images, menus, and links.</p>
+      </section>
+
+      <section id="contact" class="col" aria-labelledby="contact-title" style="margin-top:1rem;">
+        <h2 id="contact-title">Contact (demo)</h2>
+        <form id="contactForm">
+          <label>
+            Your name
+            <input type="text" name="name" />
+          </label>
+          <label style="display:block; margin-top:.5rem;">
+            Message
+            <textarea name="message" rows="4" style="width:100%;"></textarea>
+          </label>
+          <div style="margin-top:.5rem;">
+            <button class="btn" type="submit">Send</button>
+            <span id="messageArea" style="margin-left:1rem;color:green;"></span>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <small>Built by you • <a href="https://lolipops0213.github.io" target="_blank" rel="noopener">Your GitHub Pages</a></small>
+    </footer>
   </body>
 </html>
